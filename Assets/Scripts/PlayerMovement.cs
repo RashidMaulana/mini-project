@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -39,6 +40,11 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("run",horizontalInput !=0);
         anim.SetBool("grounded", isGrounded());
 
+
+       
+        {
+
+        }
         //wall jump logic
         if(wallJumpCooldown>0.2f)
         {
@@ -108,4 +114,12 @@ public class PlayerMovement : MonoBehaviour
         return horizontalInput == 0 && isGrounded() && !onWall();
     }
 
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.name == "Pass")
+        {
+            SceneManager.LoadScene("Level2");
+        }
+    }
 }
